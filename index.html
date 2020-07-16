@@ -10,6 +10,7 @@
         </div>
         <br>
         <br>
+
         <div id="directive">
             <span v-bind:title="message">
                 Hover your mouse over me for a few seconds to see my dynamically bound title!
@@ -17,11 +18,13 @@
         </div>
         <br>
         <br>
+        
         <div id="conditional">
             <span v-if="seen">Now you see me</span>
         </div>
         <br>
         <br>
+        
         <div id="forArry">
             <ol>
                 <li v-for="todo in todos">   <!-- written as forEach loop -->
@@ -29,6 +32,15 @@
                 </li>
             </ol>
         </div>
+        <br>
+        <br>
+
+        <div id="listener">
+            <p>{{ message }}</p>
+            <button v-on:click="reverseMessage">Reverse Message</button>
+        </div>
+        <br>
+        <br>
 
         <script>
             var app = new Vue({     // initialize Vue - var can be named anything
@@ -45,7 +57,7 @@
                 }
             })
 
-            var conditional = new Vue ({
+            var conditional = new Vue({
                 el: '#conditional',
                 data: {
                     seen: true  // any truthy value will cause v-if to be rendered
@@ -61,6 +73,18 @@
                         {text: 'Build something awesome'},
                         {text: 'Profit!'}
                     ]
+                }
+            })
+
+            var listener = new Vue({
+                el: "#listener",
+                data: {
+                    message: "!DOG!"
+                },
+                methods: {
+                    reverseMessage: function() {
+                        this.message = this.message.split('').reverse().join('')
+                    }
                 }
             })
 
